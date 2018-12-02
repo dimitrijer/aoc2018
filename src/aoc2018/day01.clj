@@ -5,7 +5,7 @@
                        str/split-lines
                        (map #(Integer/parseInt %))))
 
-(defn solve [] (reduce + freq-changes))
+(defn solve1 [] (reduce + freq-changes))
 
 (defn solve2 []
   (let [iter-fn (fn [seen-freqs current-freq next-freq-changes]
