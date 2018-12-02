@@ -1,4 +1,4 @@
-(ns aoc2018.day1
+(ns aoc2018.day01
   (:require [clojure.string :as str]))
 
 (def freq-changes (->> (slurp "resources/day1.txt")
