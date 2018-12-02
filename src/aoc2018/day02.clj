@@ -28,12 +28,10 @@
 (defn dist [s1 s2] (- (count s1) (count (filter true? (map #(= %1 %2) s1 s2)))))
 
 (defn solve2 []
-  (let [find-least-dist (fn [ids]
-                          (let [curr-id (first ids)
-                                rest-ids (rest ids)
-                                dists (map (fn [id] [id (dist curr-id id)]) rest-ids)
+  (let [find-least-dist (fn [[id & ids]]
+                          (let [dists (map (fn [curr-id] [curr-id (dist id curr-id)]) ids)
                                 match (first (filter #(= (second %) 1) dists))]
                             (if (some? match)
-                              (apply str (map #(if (= %1 %2) %1 "") (first match) curr-id))
-                              (recur rest-ids))))]
+                              (apply str (map #(if (= %1 %2) %1 "") (first match) id))
+                              (recur ids))))]
     (find-least-dist box-ids)))
